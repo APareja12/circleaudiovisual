@@ -10,6 +10,7 @@ class Figure {
         this.x = x;
         this.y = y;
         this.size = 8;
+        this.color = 'white';
     }
 
     draw () {
@@ -20,11 +21,22 @@ class Figure {
     }
 }
 
+let figures = [];
+for (let i = 0; i < 10; i++) {
+   figures.push(new Figure(Math.random() * canvas.width, Math.random() * canvas.height));
+    
+}
+
 
 function animate(){
     if (microphone.initialized){
        const samples = microphone.getSamples();
         
+       ctx.clearRect(0,0,canvas.width, canvas.height);
+
+       figures.forEach(figure => {
+        figure.draw();
+       })
     }
     requestAnimationFrame(animate);
 }
