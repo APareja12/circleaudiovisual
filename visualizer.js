@@ -40,6 +40,11 @@ class Figure {
             this.size -= this.size * 0.01;
         }
     }
+
+    teleport() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+    }
 }
 
 let figures = [];
@@ -59,9 +64,18 @@ function animate(){
         figure.draw();
         figure.circularMovement();
         figure.changeSize(samples[index]);
+
+        if (Math.random() > 0.99){
+            figure.teleport();
+        }
+
        })
     }
     requestAnimationFrame(animate);
 }
 
-animate();
+
+for (let i = 0; i < 5; i++) {
+    
+    animate(); 
+}
