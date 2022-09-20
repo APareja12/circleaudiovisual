@@ -11,6 +11,7 @@ class Figure {
         this.y = y;
         this.size = 8;
         this.color = 'white';
+        this.counter = 0;
     }
 
     draw () {
@@ -18,6 +19,15 @@ class Figure {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
+    }
+
+    circularMovement() {
+        if (this.counter >= 360){
+            this.counter= 0;
+        }
+        this.x += Math.cos(this.counter / 180 * Math.PI);
+        //radius to degres formula = x / 180 * Math.PI
+        this.counter++;
     }
 }
 
@@ -36,6 +46,7 @@ function animate(){
 
        figures.forEach(figure => {
         figure.draw();
+        figure.circularMovement();
        })
     }
     requestAnimationFrame(animate);
